@@ -68,11 +68,14 @@ auto register_service(
     return session;
 }
 
-SocketServer::SocketServer(uint8_t channel)
+SocketServer::SocketServer(std::string_view serviceName,
+                           std::string_view serviceDesc,
+                           std::string_view serviceProv,
+                           std::array<uint32_t, 4> uuid,
+                           uint8_t channel)
         : mSdpSession(register_service(
-        "CommieBot", "Robot control service", "Communism",
-        {0xDDDDDDDD, 0xDDDDDDDD, 0xDDDDDDDD, 0xDDDDDDDD},
-        channel)) {
+        serviceName, serviceDesc, serviceProv,
+        uuid, channel)) {
     struct sockaddr_rc localAddr{};
 
     mAcceptor = ::socket(AF_BLUETOOTH, SOCK_STREAM, BTPROTO_RFCOMM);

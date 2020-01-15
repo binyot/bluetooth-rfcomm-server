@@ -5,7 +5,12 @@
 #include "SocketServer.h"
 
 int main() {
-    SocketServer server;
+
+    SocketServer server(
+            "test service",
+            "service for testing",
+            "me",
+            {0xDDDDDDDD, 0xDDDDDDDD, 0xDDDDDDDD, 0xDDDDDDDD});
     for (bool running = true; running; ) {
         server.listen([&running](std::ostream &os, std::istream &is){
             for (std::string line; std::getline(is, line); ) {

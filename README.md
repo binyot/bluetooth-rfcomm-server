@@ -6,7 +6,11 @@ bluez rfcomm server
 When SocketServer socket is created, a SDP servce record is automatically registered.
 
 ```c++
-SocketServer server;
+SocketServer server(
+            "test service",
+            "service for testing",
+            "me",
+            {0xDDDDDDDD, 0xDDDDDDDD, 0xDDDDDDDD, 0xDDDDDDDD});
 ```
 
 To listen and handle connections, use the ```listen``` method.
